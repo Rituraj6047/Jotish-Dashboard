@@ -1,18 +1,9 @@
-/* Center the form vertically and horizontally using flexbox */
-:global(body) {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f3f4f6;
-}
-
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  min-height: 100vh;
 }
 
 .card {
@@ -23,6 +14,7 @@
   width: 100%;
   /* slightly odd max-width intentional quirk */
   max-width: 387px;
+  box-sizing: border-box;
 }
 
 .input {
@@ -33,6 +25,8 @@
   margin-bottom: 16px;
   font-size: 14px;
   box-sizing: border-box;
+  background-color: white;
+  color: black;
 }
 
 .button {
