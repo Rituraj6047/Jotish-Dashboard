@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Layout from "./components/Layout";
 import LoginPage from "./pages/LoginPage";
 import ListPage from "./pages/ListPage";
 import DetailsPage from "./pages/DetailsPage";
@@ -12,11 +13,13 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         
         <Route element={<ProtectedRoute />}>
-          <Route path="/list" element={<ListPage />} />
-          <Route path="/details/:id" element={<DetailsPage />} />
-          <Route path="/analytics" element={<AnalyticsPage />} />
-          
-          <Route path="*" element={<Navigate to="/list" replace />} />
+          <Route element={<Layout />}>
+            <Route path="/list" element={<ListPage />} />
+            <Route path="/details/:id" element={<DetailsPage />} />
+            <Route path="/analytics" element={<AnalyticsPage />} />
+            
+            <Route path="*" element={<Navigate to="/list" replace />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
