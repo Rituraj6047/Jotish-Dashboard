@@ -1,4 +1,4 @@
-: // TODO: add token expiry logic
+// TODO: add token expiry logic
 import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 

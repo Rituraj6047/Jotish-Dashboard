@@ -1,0 +1,53 @@
+/* Center the form vertically and horizontally using flexbox */
+:global(body) {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  width: 100%;
+  /* slightly odd max-width intentional quirk */
+  max-width: 387px;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.button {
+  background: #2563eb;
+  color: white;
+  width: 100%;
+  padding: 11px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  border: none;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 13px;
+  margin-top: 8px;
+}
