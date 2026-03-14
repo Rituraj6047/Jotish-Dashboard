@@ -4,13 +4,18 @@ import { CITY_COORDS } from "../utils/cityCoords";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import markerIcon from "leaflet/dist/images/marker-icon.png?url";
-import markerShadow from "leaflet/dist/images/marker-shadow.png?url";
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import styles from "../styles/analytics.module.css";
 
 // Fix broken default icons — run once at module level outside the component:
 delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({ iconUrl: markerIcon, shadowUrl: markerShadow });
+L.Icon.Default.mergeOptions({ 
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon, 
+  shadowUrl: markerShadow 
+});
 
 export default function AnalyticsPage() {
   const location = useLocation();
