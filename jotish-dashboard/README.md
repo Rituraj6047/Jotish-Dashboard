@@ -1,16 +1,32 @@
-# React + Vite
+# Employee Audit Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tech Stack
+Vite + React 18, react-router-dom v6, react-leaflet, CSS Modules.
+No UI component libraries used.
 
-Currently, two official plugins are available:
+## Run locally
+npm install && npm run dev
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Architecture
+4 routes protected by AuthContext + ProtectedRoute.
+EmployeeContext holds fetched data globally — avoids re-fetching on navigation.
 
-## React Compiler
+## Custom Virtualization Math
+visibleStart = Math.max(0, Math.floor(scrollTop / ROW_HEIGHT) - BUFFER)
+visibleEnd   = Math.min(n-1, Math.floor((scrollTop+HEIGHT)/ROW_HEIGHT) + BUFFER)
+Each row is absolutely positioned at absIndex * ROW_HEIGHT.
+Inner container height = employees.length * ROW_HEIGHT (correct scrollbar size).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## City Coordinate Mapping
+Hardcoded lookup in cityCoords.js after inspecting the API response field values.
+Cities not present in the lookup are silently skipped on the map.
 
-## Expanding the ESLint configuration
+## Known Limitations
+- Camera requires HTTPS or localhost (browser security policy)
+- City coordinate lookup is hardcoded — new cities need manual addition
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## What took longer than expected
+Canvas coordinate mismatch on the signature overlay. The sigCanvas HTML
+width/height attributes must be set to match the native video resolution,
+not the CSS display size. Pointer events fire in CSS space and need scaling
+via getBoundingClientRect() otherwise drawings appear in the wrong position.

@@ -46,7 +46,6 @@ export default function ListPage() {
   // Each row: position absolute at top = absIndex * ROW_HEIGHT
   // Total inner height = employees.length * ROW_HEIGHT (gives scrollbar correct size)
 
-  // NOTE: intentional bug — documented in README
   const visibleRows = useMemo(() => {
     const start = Math.max(0, Math.floor(scrollTop / ROW_HEIGHT) - BUFFER);
     const end = Math.min(
@@ -56,10 +55,7 @@ export default function ListPage() {
     return employees.slice(start, end + 1).map((emp, i) => ({
       ...emp, _absIndex: start + i
     }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scrollTop]); // BUG: employees intentionally omitted from deps.
-  // When fetch resolves + setEmployees fires, scrollTop unchanged so
-  // memo skips recompute. List renders empty until user first scrolls.
+  }, [scrollTop, employees]);
 
   if (loading && employees.length === 0) {
     return <div>Loading...</div>;
